@@ -46,7 +46,7 @@ Each one comes from a real mistake in this project.
 **End** (or when he says "wrap up")
 1. Update `STATUS.md` (state, open issues, next steps) and add a `CHANGELOG.md` entry.
 2. Commit and push. Tag releases.
-3. If `STATUS.md`, `CLAUDE.md`, any of `docs/*.md` or the firmware changed, re-upload those files to the claude.ai Project knowledge under the same paths, so other chats see the change.
+3. If `STATUS.md`, `CHANGELOG.md`, `CLAUDE.md`, any of `docs/*.md` or the firmware changed, re-upload those files to the claude.ai Project knowledge as `stepper-driver/<repo path>` (for example `stepper-driver/docs/hardware.md`), so other chats see the change.
 4. Tell him in a few lines what changed and what's next.
 
 ## Git
