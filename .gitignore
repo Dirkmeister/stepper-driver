@@ -1,0 +1,34 @@
+# build outputs (tools/build.sh, tools/sim)
+/build/
+/tools/.deps/
+
+# Arduino IDE / arduino-cli
+*.elf
+*.eep
+*.bin
+/firmware/**/build/
+
+# KiCad: backups, caches, locks, autosaves, local UI state
+*-backups/
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.bak
+*.kicad_prl
+fp-info-cache
+*.lck
+~*.lck
+_autosave-*
+\#auto_saved_files\#
+*-save.pro
+*-save.kicad_pcb
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.swp

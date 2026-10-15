@@ -1,0 +1,25 @@
+# Normalise text files to LF in the repo; Git for Windows converts on checkout.
+* text=auto
+
+# KiCad writes CRLF on Windows. Store these byte-for-byte so files round-trip
+# exactly between the owner's PC and Claude's scripts (they still diff as text).
+*.kicad_pro -text
+*.kicad_sch -text
+*.kicad_pcb -text
+*.kicad_sym -text
+*.kicad_mod -text
+*.kicad_dru -text
+*.kicad_wks -text
+sym-lib-table -text
+fp-lib-table -text
+
+# Scripts must stay LF to run on Linux
+*.sh text eol=lf
+
+# Binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.pdf binary
+*.xlsx binary
+*.hex binary
