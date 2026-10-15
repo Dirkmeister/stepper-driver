@@ -1,0 +1,34 @@
+diff --git a/simavr/sim/avr_timer.c b/simavr/sim/avr_timer.c
+index ea35dd5..9306988 100644
+--- a/simavr/sim/avr_timer.c
++++ b/simavr/sim/avr_timer.c
+@@ -610,6 +610,20 @@ avr_timer_reconfigure(
+ 	}
+ }
+ 
++/* local patch: TOP = ICR1 takes effect on write, as on real hardware */
++static void
++avr_timer_write_icr(
++		struct avr_t * avr,
++		avr_io_addr_t addr,
++		uint8_t v,
++		void * param)
++{
++	avr_timer_t * p = (avr_timer_t *)param;
++	avr_core_watch_write(avr, addr, v);
++	if (p->mode.top == avr_timer_wgm_reg_icr && p->cs_div_value)
++		avr_timer_reconfigure(p, 0);
++}
++
+ static void
+ avr_timer_write_ocr(
+ 		struct avr_t * avr,
+@@ -979,6 +993,8 @@ avr_timer_init(
+ 			avr_register_io_write(avr, p->comp[compi].foc.reg, avr_timer_write_foc, p);
+ 	}
+ 	avr_register_io_write(avr, p->r_tcnt, avr_timer_tcnt_write, p);
++	if (p->r_icr)
++		avr_register_io_write(avr, p->r_icr, avr_timer_write_icr, p);
+ 	avr_register_io_read(avr, p->r_tcnt, avr_timer_tcnt_read, p);
+ 
+ 	if (p->as2.reg) {
