@@ -15,7 +15,7 @@ Updated 2026-11-25 (Docs: Restructure). State and open items only: history goes 
 
 ## Active thread
 
-Docs: Restructure (steps 7 to 10 left). Next: Bring-up: Motor only vibrates.
+Docs: Restructure (steps 9 and 10 left). Next: Bring-up: Motor only vibrates.
 
 ## Queue
 
@@ -42,12 +42,11 @@ Docs: Restructure (steps 7 to 10 left). Next: Bring-up: Motor only vibrates.
 | 11 | Check before buying: the drawer 3 IDC kit (FC-10 sockets, 2x3 and 2x5 box headers), the 0805 bin (10 uH for L1), the drawer 2 terminal blocks (5.08 mm for J13) | 2026-10-13 | 43 d | HW |
 | 12 | C6/C7 dielectric: C0G/NP0? | 2026-10-14 | 42 d | HW |
 | 13 | Tags on GitHub: `fw-v1.0` at `b416c16`, `hw-rev-a` at `64a4da5` (Claude sessions can't push tags) | 2026-11-25 | 0 d | Dallas |
-| 14 | Banner on the 2026-10-06 progress doc and its repo snapshot: superseded by STATUS.md, and its 9 to 24 V fallback burns D1 | 2026-11-24 | 1 d | Docs |
 | 15 | Check `docs/hardware.md` against the KiCad files now in `hardware/kicad/` (the design files win) | 2026-11-25 | 0 d | HW |
 
 Closed 2026-11-24 by the review: the flashed-firmware comparison (folded into item 2), J5's connector type (JST XH 4-pin, 2.50 mm) and the encoder RC pairing (R13/C18 on PD2, R14/C19 on PD3, R15/C20 on PD4).
 
-Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inventory into the Project knowledge, and the new Project instructions (pasted; they match `docs/claude-project-instructions.md`).
+Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inventory into the Project knowledge, the new Project instructions (pasted; they match `docs/claude-project-instructions.md`), and the RETIRED banners on the 2026-10-06 progress doc and its repo snapshot (item 14).
 
 ## Decisions waiting on Dallas
 
