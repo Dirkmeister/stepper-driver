@@ -5,10 +5,8 @@
 | | |
 |---|---|
 | Target | ATmega328P, 16 MHz external crystal, no bootloader (MiniCore) |
-| Size | 25,208 B flash (76.9%), 490 B RAM with MiniCore; 25,264 B on the stock Uno core |
+| Size, stack, warnings | v1.0 baseline in `CLAUDE.md`, Firmware checks |
 | Libraries | none (OLED, I2C and TMC2209 UART are built in) |
-| Stack | worst case 504 B in simulation, out of 1,558 B free |
-| Warnings | zero with `-Wall -Wextra` |
 | Status | verified by compile and simulation; probably first run on real hardware 2026-10-14, results not recorded yet |
 
 ![Simulated screens](images/sim-screens.png)
@@ -102,7 +100,7 @@ Default speed is 60 rpm. Settings live in EEPROM (magic 0x5A, version 1, checksu
 | VM_OK_MV | 9,000 mV: self test wants at least this |
 | VM_RUN_MV | 8,000 mV: running below this is a fault |
 | VM_HIGH_MV | 16,000 mV: not a 12 V brick (D1 is a 15 V zener) |
-| VM_MAX_MV | 25,000 mV: C1 / C14 rating |
+| VM_MAX_MV | 25,000 mV: C1 / C14 rating (assumed 25 V, unverified: STATUS item 7) |
 
 ## Debug log
 
@@ -117,7 +115,7 @@ J9 pin 1 (PB2) to a USB-serial adapter's RX, J9 pin 6 to GND, 57600 8N1 (bit-ban
 
 ## What simulation proved and what it didn't
 
-The compiled ELF ran in simavr against models of the TMC2209 (UART, registers, echo), the SSD1306, the divider and the knob (`tools/sim/`). 20 scenarios, each flagging exactly its injected fault: wrong address, no echo, line held low, no module, DIAG unwired, EN / DIR / STEP trace open, no OLED, output short, TMC2208, no motor, one coil open, VM sagging while running, knob held at boot, unset fuses (8 MHz).
+The compiled ELF ran in simavr against models of the TMC2209 (UART, registers, echo), the SSD1306, the divider and the knob (`tools/sim/`). Each scenario flags exactly its injected fault: wrong address, no echo, line held low, no module, DIAG unwired, EN / DIR / STEP trace open, no OLED, output short, TMC2208, no motor, one coil open, VM sagging while running, knob held at boot, unset fuses (8 MHz).
 
 Not proven: real TMC2209 behaviour (especially open-load detection), the OLED at 400 kHz over the ribbon, and which way the real knob counts. If speed runs backwards, set Knob dir; if the screen is upside down, set Screen. Neither needs a reflash.
 

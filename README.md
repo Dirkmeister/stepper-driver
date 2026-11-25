@@ -11,7 +11,7 @@ A bench tool for NEMA 17 and smaller bipolar stepper motors: plug a motor in, sp
 | UI | 0.96 in SSD1306 I2C OLED, EC11 encoder with push, on a separate front board |
 | Power | 12 V brick, inline 2 A blade fuse, panel switch, reverse-polarity FET, L7805 |
 | Boards | Rev A: main 100.6 x 89.0 mm + front 70.0 x 38.1 mm, 2 layers, one JLCPCB panel |
-| Firmware | v1.0 (2026-10-12), no libraries, 25,208 B, verified in a board simulator |
+| Firmware | v1.0 (2026-10-12), no libraries, verified in a board simulator (sizes in `CLAUDE.md`) |
 
 ## Status
 

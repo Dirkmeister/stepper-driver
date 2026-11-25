@@ -92,7 +92,7 @@ Turn on verbose upload output (File > Preferences) and check for `Device signatu
 
 Sketch > Upload Using Programmer (not the normal Upload; there's no bootloader).
 
-- Compile line: about `Sketch uses 25208 bytes (76%) ... Maximum is 32768 bytes`. A maximum of 32384 means a bootloader is selected.
+- Compile line: `Sketch uses ... bytes (..%) ... Maximum is 32768 bytes`, with the flash size in `CLAUDE.md`, Firmware checks. A maximum of 32384 means a bootloader is selected.
 - Upload output: `Warning: no eeprom data found in Intel Hex file ...stepper_tester.ino.eep` is also normal. The firmware doesn't preload EEPROM; a blank EEPROM boots with defaults (400 mA, 1/16 step, 60 rpm).
 - Any `Error:` line is a real failure; save the whole output.
 
@@ -106,7 +106,7 @@ On programmer power only, tests 1 to 6 pass, VM warns, 7 to 11 are skipped. On t
 
 If MiniCore can't be installed: Board "Arduino Uno" (Arduino AVR Boards), Programmer "Arduino as ISP" (not "ArduinoISP", a different programmer), then the same Burn Bootloader and Upload Using Programmer steps.
 
-- Compiles to 25,264 bytes, no warnings.
+- Compiles with no warnings, to the stock-core size in `CLAUDE.md`, Firmware checks.
 - Only accepts 328P chips (signature 1E 95 0F).
 - The Uno's fuses don't preserve EEPROM through the chip erase every upload does, so each reflash resets the saved settings to defaults. (MiniCore's "EEPROM retained" sets the fuse that keeps them.)
 
@@ -119,7 +119,7 @@ tools/fetch_deps.sh sim      # pinned ArduinoCore-avr, MiniCore, simavr (once)
 tools/build.sh               # MiniCore build: build/minicore/fw.elf, fw.hex, sizes
 tools/build.sh arduino       # stock Uno core build
 tools/sim/setup.sh           # patch + build simavr and the board simulator (once)
-tools/sim/run_all.sh         # build + all 20 scenarios, exits 1 on any difference
+tools/sim/run_all.sh         # build + all scenarios, exits 1 on any difference
 ```
 
 Needs `gcc-avr avr-libc binutils-avr` (avr-gcc 7.3), `build-essential libelf-dev pkg-config`, and Python 3 with Pillow for the screen renders. Details in `tools/sim/README.md`.
