@@ -8,14 +8,14 @@ Updated 2026-11-25 (Docs: Restructure). State and open items only: history goes 
 |---|---|---|
 | Hardware | Rev A: 5 boards delivered, at least 1 built | 2026-10-14 |
 | Bring-up | Board 1 powers up; motor only vibrates | 2026-10-14 |
-| Firmware | v1.0, rebuilt to the `CLAUDE.md` baseline (Firmware checks); real-board self test not recorded | 2026-11-24 |
+| Firmware | v1.0: build and simulator match the `CLAUDE.md` baseline (Firmware checks); real-board self test not recorded | 2026-11-25 |
 | Repo | On GitHub with its full history: firmware, tools, docs and design files. Tags not created yet (item 13) | 2026-11-25 |
 | Design files | Rev A KiCad project and production files in `hardware/` | 2026-11-25 |
 | Inventory | Dallas's file in the Project knowledge (`inventory/component-inventory.md`); stated parts and the buy list in `docs/inventory.md` | 2026-11-25 |
 
 ## Active thread
 
-Docs: Restructure (steps 9 and 10 left). Next: Bring-up: Motor only vibrates.
+Docs: Restructure (step 10 left). Next: Bring-up: Motor only vibrates.
 
 ## Queue
 
@@ -46,7 +46,7 @@ Docs: Restructure (steps 9 and 10 left). Next: Bring-up: Motor only vibrates.
 
 Closed 2026-11-24 by the review: the flashed-firmware comparison (folded into item 2), J5's connector type (JST XH 4-pin, 2.50 mm) and the encoder RC pairing (R13/C18 on PD2, R14/C19 on PD3, R15/C20 on PD4).
 
-Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inventory into the Project knowledge, the new Project instructions (pasted; they match `docs/claude-project-instructions.md`), and the RETIRED banners on the 2026-10-06 progress doc and its repo snapshot (item 14).
+Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inventory into the Project knowledge, the new Project instructions (pasted; they match `docs/claude-project-instructions.md`), the RETIRED banners on the 2026-10-06 progress doc and its repo snapshot (item 14), and the knowledge-mirror decision (all 11 repo files, `docs/decisions.md` #30).
 
 ## Decisions waiting on Dallas
 
@@ -55,8 +55,7 @@ Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inven
 | Display | Keep the 0.96 in, or go 1.3, 1.54 or 2.42 in (`docs/hardware.md` section 12) | 2026-10-14 |
 | DIAG on built boards | Jumper to J7, or leave it off (firmware test 10 only warns) | 2026-10-14 |
 | R17/R18 | Fit only if the OLED is flaky over the ribbon | 2026-10-14 |
-| Knowledge mirror | Mirror all 11 repo files, or only CLAUDE.md and STATUS.md now that the public repo clones anywhere | 2026-11-24 |
 
 ## Decision log
 
-`docs/decisions.md`, 29 entries. New ones go at the bottom.
+`docs/decisions.md`, 30 entries. New ones go at the bottom.
