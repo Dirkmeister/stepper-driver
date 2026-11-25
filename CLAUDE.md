@@ -45,9 +45,10 @@ Each one comes from a real mistake in this project.
 
 **End** (or when he says "wrap up")
 1. Update `STATUS.md` (state, active thread, queue, open items) and add a `CHANGELOG.md` entry.
-2. Commit and push. For a release, name the tag and its commit for Dallas (see Git).
-3. If `STATUS.md`, `CHANGELOG.md`, `CLAUDE.md`, any of `docs/*.md` or the firmware changed, re-upload those files to the claude.ai Project knowledge as `stepper-driver/<repo path>` (for example `stepper-driver/docs/hardware.md`), so other chats see the change.
-4. Tell him in a few lines what changed and what's next.
+2. Write the next thread's seed into `docs/seeds.md`, newest first: it opens with that thread's Thread line and is at most 10 lines.
+3. Commit and push. For a release, name the tag and its commit for Dallas (see Git).
+4. If `STATUS.md`, `CHANGELOG.md`, `CLAUDE.md`, any of `docs/*.md` or the firmware changed, re-upload those files to the claude.ai Project knowledge as `stepper-driver/<repo path>` (for example `stepper-driver/docs/hardware.md`), so other chats see the change.
+5. Tell him in a few lines what changed and what's next.
 
 ## Git
 

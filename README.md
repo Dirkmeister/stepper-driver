@@ -33,6 +33,7 @@ Rev A boards are built and the first one powers up; the motor only vibrates so f
 | [`docs/inventory.md`](docs/inventory.md) | parts the owner has stated outside his inventory file, and the buy list (the inventory file itself is in the claude.ai Project knowledge) |
 | [`docs/history/`](docs/history/) | sources, the 2026-10-06 progress doc |
 | [`docs/claude-project-instructions.md`](docs/claude-project-instructions.md) | text for the claude.ai Project's instructions field |
+| [`docs/seeds.md`](docs/seeds.md) | opening message for the next thread |
 | [`firmware/`](firmware/) | `stepper_tester/` (the board firmware), `bringup/` (old Uno breadboard sketches) |
 | [`tools/`](tools/) | `build.sh` headless build, `sim/` board simulator with fault scenarios |
 | [`hardware/`](hardware/) | Rev A KiCad project and production files, as ordered |
