@@ -13,6 +13,9 @@
 sym-lib-table -text
 fp-lib-table -text
 
+# Fab outputs are kept exactly as uploaded (CRLF csv and ipc files included)
+hardware/production/** -text
+
 # Scripts must stay LF to run on Linux
 *.sh text eol=lf
 
