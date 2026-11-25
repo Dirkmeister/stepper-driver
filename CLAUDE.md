@@ -44,8 +44,8 @@ Each one comes from a real mistake in this project.
 - Hardware: run anything that becomes a part or footprint choice through rule 1.
 
 **End** (or when he says "wrap up")
-1. Update `STATUS.md` (state, open issues, next steps) and add a `CHANGELOG.md` entry.
-2. Commit and push. Tag releases.
+1. Update `STATUS.md` (state, active thread, queue, open items) and add a `CHANGELOG.md` entry.
+2. Commit and push. For a release, name the tag and its commit for Dallas (see Git).
 3. If `STATUS.md`, `CHANGELOG.md`, `CLAUDE.md`, any of `docs/*.md` or the firmware changed, re-upload those files to the claude.ai Project knowledge as `stepper-driver/<repo path>` (for example `stepper-driver/docs/hardware.md`), so other chats see the change.
 4. Tell him in a few lines what changed and what's next.
 

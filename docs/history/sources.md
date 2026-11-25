@@ -14,8 +14,8 @@ Both chats were read end to end on 2026-10-14 to build this repo.
 ## Documents
 
 - [Stepper Tester: Progress and Next Steps](https://claude.ai/code/artifact/3d0a0d93-0c92-4010-bbde-49feed594a54) (Claude Docs, 2026-10-06). Snapshot in `2026-10-06-progress-and-next-steps.md`; checked line by line against the chat's tool inputs.
-- `component-inventory.md`: the owner's parts inventory, uploaded to the PCB chat. Not in this repo yet.
-- KiCad project, production zip and the generic BOM spreadsheet (`stepper_tester_bom.xlsx`): on the owner's PC. Not in this repo yet (see `hardware/README.md`).
+- `component-inventory.md`: the owner's parts inventory, uploaded to the PCB chat. Since 2026-11-25 it's in the claude.ai Project knowledge (`inventory/component-inventory.md`); it stays out of this repo.
+- KiCad project and production zips: in `hardware/` since 2026-11-25 (see `hardware/README.md`). The generic BOM spreadsheet (`stepper_tester_bom.xlsx`) isn't in this repo.
 
 ## How the code was recovered
 

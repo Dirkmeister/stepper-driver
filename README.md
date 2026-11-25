@@ -21,7 +21,7 @@ Rev A boards are built and the first one powers up; the motor only vibrates so f
 
 | Path | What |
 |---|---|
-| [`STATUS.md`](STATUS.md) | current state, open issues, next steps |
+| [`STATUS.md`](STATUS.md) | current state, active thread, queue, open items |
 | [`CHANGELOG.md`](CHANGELOG.md) | history |
 | [`CLAUDE.md`](CLAUDE.md) | rules and session protocol for working on this with Claude |
 | [`docs/hardware.md`](docs/hardware.md) | design reference: power path, pin map, connectors, BOM, layout rules, display options |
@@ -30,12 +30,12 @@ Rev A boards are built and the first one powers up; the motor only vibrates so f
 | [`docs/firmware.md`](docs/firmware.md) | self test, controls, menu, faults, debug log, backlog |
 | [`docs/build-and-flash.md`](docs/build-and-flash.md) | MiniCore, Uno as ISP, fuses, expected warnings |
 | [`docs/decisions.md`](docs/decisions.md) | why the design is the way it is |
-| [`docs/inventory.md`](docs/inventory.md) | parts on hand as recorded so far (the owner's inventory file is the authority) |
+| [`docs/inventory.md`](docs/inventory.md) | parts the owner has stated outside his inventory file, and the buy list (the inventory file itself is in the claude.ai Project knowledge) |
 | [`docs/history/`](docs/history/) | sources, the 2026-10-06 progress doc |
 | [`docs/claude-project-instructions.md`](docs/claude-project-instructions.md) | text for the claude.ai Project's instructions field |
 | [`firmware/`](firmware/) | `stepper_tester/` (the board firmware), `bringup/` (old Uno breadboard sketches) |
-| [`tools/`](tools/) | `build.sh` headless build, `sim/` board simulator with 20 fault scenarios |
-| [`hardware/`](hardware/) | KiCad project and production files (to be added) |
+| [`tools/`](tools/) | `build.sh` headless build, `sim/` board simulator with fault scenarios |
+| [`hardware/`](hardware/) | Rev A KiCad project and production files, as ordered |
 
 ## Flash the firmware (short version)
 
