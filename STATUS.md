@@ -25,6 +25,7 @@
 - [ ] **Per-board build record:** what went into J2, J10/J11, J13, L1, R17/R18.
 - [ ] **Compare the repo firmware with the copy that was flashed** (it was rebuilt from the chat; MD5 `9813bde1ffaefffa24b478bb6aa437b4`).
 - [ ] **Create the tags on GitHub:** `fw-v1.0` at commit `b416c16`, `hw-rev-a` at `64a4da5`. Tag pushes from Claude sessions are refused (HTTP 403, 2026-11-25), so Dallas creates them (GitHub Releases, or git on the PC).
+- [ ] **Paste the new Project instructions** from `docs/claude-project-instructions.md` into the Project's instructions field on claude.ai (Claude can't edit that field).
 - [ ] **Power harness questions never answered:** does the drawer 4 jack fit the brick's plug (5.5 x 2.1 mm assumed), is an inline fuse holder on hand, what DC rating are the panel switches, is there a fan for J6.
 - [ ] **IDC parts:** check the drawer 3 IDC kit for FC-10 sockets before buying; verified listings are in `docs/errata-rev-a.md` (E2).
 

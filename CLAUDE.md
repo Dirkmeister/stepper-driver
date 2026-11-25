@@ -54,6 +54,7 @@ Each one comes from a real mistake in this project.
 - One branch, `main`, for now. Commit prefixes: `fw:`, `hw:`, `docs:`, `tools:`, `repo:`.
 - Firmware release: bump `FW_VER` and the header's version/date line, add a changelog entry, tag `fw-vX.Y` (minor for features and fixes, major for anything that changes how the board is used or flashed).
 - Hardware: commit KiCad sources and project libraries; never backups or caches (`.gitignore` handles it). Production files of every ordered revision go in `hardware/production/rev-X/`, exactly as uploaded to the fab; tag `hw-rev-X` on that commit. Rev B work goes on a `hw/rev-b` branch.
+- Claude sessions can't push tags (HTTP 403, 2026-11-25): name the tag and its commit, and Dallas creates it (GitHub Releases or git on the PC).
 - Claude sessions commit under the session's own signed git identity (Claude, noreply@anthropic.com) with the attribution trailer the session asks for; don't override `user.name` / `user.email` in the repo. The owner's own commits are `Dirkmeister`.
 - No force-pushes, no history rewrites, no deleting branches or tags without asking.
 

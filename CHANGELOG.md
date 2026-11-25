@@ -9,6 +9,7 @@ Newest first. One entry per working session or release. Firmware releases are ta
 - Step 2: pushed chat 1's repo bundle to GitHub, a fast-forward from the README commit. The bundle matched the Project knowledge copies (firmware byte-identical). The `fw-v1.0` tag push was refused (HTTP 403), so the tag still has to be created on GitHub. Touched: STATUS.md.
 - Step 3: added the Rev A KiCad project (5 files) and production files (6 files) to `hardware/`, byte-for-byte from the owner's PC; `.gitattributes` now keeps `hardware/production/` as exported. The 02:13 and 02:19 exports carry identical gerbers and drills. `hw-rev-a` belongs on `64a4da5`. Touched: hardware/README.md, STATUS.md.
 - Step 4: added Dallas's inventory file (Krech Protolab Component Inventory, updated 2026-09-15) to the Project knowledge as `inventory/component-inventory.md`, kept out of the public repo. CLAUDE.md points at it. `docs/inventory.md` now holds the parts he has stated that the file doesn't list, and the buy list checked against the file; the M3 hardware row is closed. Touched: CLAUDE.md, docs/inventory.md, STATUS.md.
+- Step 5: new Project instructions in `docs/claude-project-instructions.md` (the review's draft, plus the inventory path, the stated-parts check and seeds in `docs/seeds.md`), waiting for Dallas to paste them into the Project. CLAUDE.md's Git section notes that Claude sessions can't push tags. Touched: docs/claude-project-instructions.md, CLAUDE.md, STATUS.md.
 
 ## 2026-10-14
 

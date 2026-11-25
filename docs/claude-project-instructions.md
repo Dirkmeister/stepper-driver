@@ -5,25 +5,34 @@ The text below goes in the "Stepper Motor Tool" Project's instructions field on 
 ---
 
 ```
-This project is the Universal Stepper Tester (GitHub: Dirkmeister/stepper-driver), a 12 V bench tester for NEMA 17 and smaller steppers: ATmega328P + BTT TMC2209 V1.2 over UART + SSD1306 OLED + EC11 encoder. Rev A boards are built; firmware is v1.0. Owner: Dallas, signs boards "-DK".
+Universal Stepper Tester. Repo: github.com/Dirkmeister/stepper-driver (public). 12 V bench tester for NEMA 17 and smaller steppers: ATmega328P, BTT TMC2209 V1.2 over UART, SSD1306 OLED, EC11 encoder. Rev A: 5 boards, at least 1 built. Firmware v1.0. Owner: Dallas. Boards signed "-DK".
 
-Source of truth is the repo. The Project knowledge files under stepper-driver/ are copies of repo files at the same paths: CLAUDE.md (the working agreement, follow it), STATUS.md (current state and open issues), CHANGELOG.md, docs/*.md and the firmware. When the session can reach GitHub, attach the repo with push access, clone it and work from the clone; otherwise use the knowledge files. The repo beats chat history.
+Start of every chat
+1. Threads are named "Prefix: Subject". Prefixes: Repo, Bring-up, FW, HW, Rev B, Docs. No name given: propose one.
+2. The first reply opens with one line: "Thread: <name> | STATUS <date> | <open items that bear on it>".
+3. Read STATUS.md, CLAUDE.md and the docs for the task. CLAUDE.md is the working agreement: all 8 hard rules and all 7 safety notes apply.
+4. One thread per live issue. If STATUS.md names another active thread for this issue, say so before working.
 
-Start every chat by reading STATUS.md and the docs for the task, and mention any open issue that bears on it.
+Where things live
+- Repo = source of truth for firmware, tools, docs and hardware files. Any session can clone it read-only; pushing needs the Claude GitHub App on the repo.
+- Project knowledge = copies of repo files at the same paths under stepper-driver/, plus his inventory, the Krech Protolab Component Inventory (inventory/component-inventory.md, not in the repo). If a copy and the repo disagree, say so before using either.
+- Chat history is background only.
 
-Hard rules (reasons in CLAUDE.md):
-1. Check every part, footprint and purchase against the owner's inventory (docs/component-inventory.md) before suggesting it. If it isn't there, say so and call it a buy item.
-2. Verify purchase links by opening and reading the product page. Never pick from titles or search snippets.
-3. Answer the question asked. Yes/no questions get yes/no. Don't edit files or "fix" things unasked; ask before each fix.
-4. Label estimates and show the math. Ask him to measure physical facts you don't know.
-5. Never guess KiCad library names.
-6. Give every delivered file a new, unique name and confirm it was delivered.
-7. Track every flagged issue in STATUS.md until it's closed.
-8. The board silkscreen is signed "-DK", not "Krech Protolab".
+Gates
+- Parts: check inventory/component-inventory.md and the parts he has stated in docs/inventory.md first; anything in neither is a buy item. Ask what he has before suggesting connectors.
+- Board firmware: one complete build with the self test. tools/build.sh and tools/sim/run_all.sh pass before delivery; report flash, RAM and the scenario count.
 
-Style: he writes short, casual messages; be direct and efficient. Wiring and bring-up: one testable step at a time, with a diagram when words aren't landing. Real-board firmware: one complete build with the self test, verified with tools/build.sh and tools/sim/run_all.sh before delivery, then test, debug, revise.
+Style
+- He writes short and casual: be direct. Wiring and bring-up: one testable step at a time, with a diagram when words don't land.
+- Calculate numbers and show the math; label estimates.
+- Units: PCB geometry in mm (KiCad and JLC are metric); everything else imperial first, metric in parentheses. No em dashes.
 
-Git: small commits prefixed fw:, hw:, docs:, tools:. Firmware releases bump FW_VER, add a CHANGELOG entry and get a tag fw-vX.Y. At the end of a session, or when he says "wrap up": update STATUS.md and CHANGELOG.md, commit and push, and re-upload any changed files to the Project knowledge as stepper-driver/<repo path>.
+Who writes what
+- STATUS.md: the thread that changes the state, at wrap-up. CHANGELOG.md: every thread, at wrap-up.
+- docs/decisions.md: the thread where he decides, with the reason and who decided.
+- errata-rev-a.md: Bring-up and HW threads. hardware.md: HW threads. firmware.md and the firmware: FW threads.
+- docs/seeds.md: the thread that wraps up, with the seed for the next thread.
+- These instructions and CLAUDE.md: Docs threads only.
 
-Safety, every time it's relevant: never plug or unplug a motor with 12 V on; J1 pin 1 is negative; J3 jumper off with the brick connected; keep the input at 9 to 14 V while D1 (15 V zener) is fitted.
+Wrap-up (or "wrap up"): update STATUS.md and CHANGELOG.md, write the next thread's seed into docs/seeds.md (it opens with that thread's Thread line), commit and push, re-upload changed files to the knowledge as stepper-driver/<repo path>, then say in a few lines what changed and what's next.
 ```
