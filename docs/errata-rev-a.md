@@ -47,7 +47,7 @@ E2 to E4 came out of Claude's audit of the owner's inventory file during assembl
 - **Issue:** SW4's two 1.5 mm mounting slots were exported as routed slots instead of the "alternate drill mode" (G85) JLC asks for. The fix was recommended before ordering but didn't reach the fab: both production zips in `hardware/production/rev-A/` have routed slots (a G85 drill file was exported at 02:18 and never packaged).
 - **Impact:** JLC may have drilled round holes.
 - **Workaround:** if the holes are round, file them out or snip the tabs. The panel nut holds the encoder.
-- **Fix for the next order:** KiCad, File > Fabrication Outputs > Drill Files, "Oval holes drill mode: Use alternate drill mode", regenerate, and check the slots are oblong in JLC's gerber viewer.
+- **Fix for the next order:** the zip JLC gets comes from the Fabrication Toolkit plugin, not from KiCad's Drill Files dialog, and the plugin's saved options (`fabrication-toolkit-options.json`) have no slot setting. KiCad's alternate drill mode (G85) export at 02:18 never reached the plugin's 02:19 zip. Before ordering, open the plugin's zip itself and check the slots are oblong in JLC's gerber viewer; if they're routed again, look for slot handling in the plugin version then current, or put KiCad's G85 drill files into the zip before uploading.
 
 ## E6: Silkscreen too thin
 
@@ -70,3 +70,4 @@ Not decisions; collected so nothing gets lost.
 - A third mouse-bite tab: two 2 mm tabs holding a 70 mm front board is on the light side.
 - If a 2.42 in display is chosen, room for a 3.3 V regulator (AMS1117-3.3 is in stock).
 - Re-check every footprint against the inventory before ordering, and run the production-zip check again (slots, silkscreen widths, outline, NPTH).
+- Design-for-debug ideas: the [PCB design-for-debug catalog](https://claude.ai/artifact/Et1Uo2qoXSDyybryVcqmNt) (Claude Doc from the PCB chat, 2026-10-14, about 100 techniques).
