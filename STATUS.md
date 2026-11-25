@@ -1,52 +1,62 @@
 # Status
 
-**Updated 2026-10-14.** Where the project stands right now. Update it at the end of every working session (see `CLAUDE.md`); history goes in `CHANGELOG.md`.
+Updated 2026-11-25 (Docs: Restructure). State and open items only: history goes in `CHANGELOG.md`, reasons in `docs/decisions.md`.
 
-## At a glance
+## State
 
-| Area | State |
-|---|---|
-| Hardware | Rev A: 5 boards delivered 2026-10-12. At least one built (2026-10-13 to 14). Known issues: `docs/errata-rev-a.md` |
-| Bring-up | First power-up 2026-10-14: board alive, **motor only vibrates** (open) |
-| Firmware | v1.0 (2026-10-12). First chip programmed 2026-10-14 on a breadboard ISP jig (fuse burn confirmed; the upload step wasn't recorded). The real-board self-test result hasn't been recorded |
-| Design files | KiCad project and Rev A production files in `hardware/` since 2026-11-25. The inventory is in the Project knowledge (`inventory/component-inventory.md`), not the repo |
-| Repo and docs | created 2026-10-14 from both chats; pushed to GitHub 2026-11-25. Tags `fw-v1.0` and `hw-rev-a` aren't on GitHub yet (see open issues) |
+| Area | State | As of |
+|---|---|---|
+| Hardware | Rev A: 5 boards delivered, at least 1 built | 2026-10-14 |
+| Bring-up | Board 1 powers up; motor only vibrates | 2026-10-14 |
+| Firmware | v1.0, rebuilt to the `CLAUDE.md` baseline (Firmware checks); real-board self test not recorded | 2026-11-24 |
+| Repo | On GitHub with its full history: firmware, tools, docs and design files. Tags not created yet (item 13) | 2026-11-25 |
+| Design files | Rev A KiCad project and production files in `hardware/` | 2026-11-25 |
+| Inventory | Dallas's file in the Project knowledge (`inventory/component-inventory.md`); stated parts and the buy list in `docs/inventory.md` | 2026-11-25 |
 
-## Open issues
+## Active thread
 
-- [ ] **Motor only vibrates.** Power off, meter the motor wires: J8/J12/J13 pins 1-2 must be one coil, pins 3-4 the other (`docs/assembly.md`, Motor wiring). Then run Menu > Coil check and note what it says, and run at 0.25 rev/s watching both coil-LED pairs. If the wiring is right, try a lower speed or more current than the default 400 mA.
-- [ ] **Record the real self-test result:** a photo of all 11 lines (turn the knob to scroll) or the debug log from J9. The first board was most likely running v1.0 at first power-up (fuses burned 03:38, motor running at 04:56), but that wasn't stated, and the PCB chat's diagnosis assumed the older bring-up sketch's screen.
-- [ ] **Knob direction and screen orientation** on the real board: if wrong, set Knob dir / Screen in the menu (no reflash).
-- [ ] **E1, DIAG:** write down what was done on each board (clipped, jumpered to J7, or left), and measure the module's DIAG pin position.
-- [ ] **E5, encoder slots:** check whether the delivered boards have oblong slots or round holes.
-- [ ] **E6, J1 polarity marks:** check whether they printed; mark by hand if not (J1 pin 1 is negative).
-- [ ] **C1 / C14 voltage rating:** read it on the cans. The 9 to 14 V input limit and the firmware's 25 V alarm both assume 25 V.
-- [ ] **Brick polarity:** meter the brick's plug (center-positive assumed, never checked) before crimping the J1 harness.
-- [ ] **Per-board build record:** what went into J2, J10/J11, J13, L1, R17/R18.
-- [ ] **Compare the repo firmware with the copy that was flashed** (it was rebuilt from the chat; MD5 `9813bde1ffaefffa24b478bb6aa437b4`).
-- [ ] **Create the tags on GitHub:** `fw-v1.0` at commit `b416c16`, `hw-rev-a` at `64a4da5`. Tag pushes from Claude sessions are refused (HTTP 403, 2026-11-25), so Dallas creates them (GitHub Releases, or git on the PC).
-- [ ] **Paste the new Project instructions** from `docs/claude-project-instructions.md` into the Project's instructions field on claude.ai (Claude can't edit that field).
-- [ ] **Power harness questions never answered:** does the drawer 4 jack fit the brick's plug (5.5 x 2.1 mm assumed), is an inline fuse holder on hand, what DC rating are the panel switches, is there a fan for J6.
-- [ ] **IDC parts:** check the drawer 3 IDC kit for FC-10 sockets before buying; verified listings are in `docs/errata-rev-a.md` (E2).
+Docs: Restructure (steps 7 to 10 left). Next: Bring-up: Motor only vibrates.
 
-## Decisions waiting on the owner
+## Queue
 
-- **Display:** keep the 0.96 in, or upgrade (1.3 in SH1106, 1.54 in Waveshare SSD1309, 2.42 in SSD1309). Comparison in `docs/hardware.md` section 12; Claude's pick was the 1.54 in, panel-mounted and wired to U6's pads.
-- **DIAG on the built boards:** clip and jumper to J7, or leave it off (the firmware doesn't need it; test 10 just warns).
-- **R17/R18:** fit only if the OLED is flaky over the ribbon.
+1. Docs: Restructure (finishing)
+2. Bring-up: Motor only vibrates
+3. FW: v1.1 (bring-up fixes first, then the auto test; `docs/firmware.md` Backlog)
+4. HW: Boards 2 to 5, a build record each
+5. HW: Front panel for the UI board
 
-## Next steps
+## Open items (ages on 2026-11-25)
 
-1. Get a clean self test (11/11, or 10 + the DIAG warning) and a motor spinning on board 1. Record it here.
-2. Create the `fw-v1.0` and `hw-rev-a` tags on GitHub.
-3. Firmware v1.1: fixes from real-hardware testing first, then the auto test (ramp until stall, report max rpm at the set current), see `docs/firmware.md` Backlog.
-4. Build and test boards 2 to 5 with a per-board record.
-5. Front panel for the UI board; M3 standoffs.
-6. Keep collecting Rev B changes in `docs/errata-rev-a.md`.
+| # | Item | Opened | Age | Thread |
+|---|---|---|---|---|
+| 1 | Motor only vibrates: meter the coil pairs at J8/J12/J13 with power off (`docs/assembly.md`, Motor wiring), run Coil check, try 0.25 rev/s | 2026-10-14 | 42 d | Bring-up |
+| 2 | Record the self test: photo of all 11 lines or the J9 log (also confirms v1.0 is on the chip; the PCB chat's diagnosis assumed the older bring-up sketch) | 2026-10-14 | 42 d | Bring-up |
+| 3 | Knob direction and screen orientation on the real board | 2026-10-14 | 42 d | Bring-up |
+| 4 | E1 DIAG: what was done on each board; measure the pin | 2026-10-14 | 42 d | Bring-up |
+| 5 | E5 encoder slots: oblong or round (both production zips have routed slots) | 2026-10-06 | 50 d | Bring-up |
+| 6 | E6 J1 +/- marks: printed? (0.064 mm lines went to the fab) | 2026-10-06 | 50 d | Bring-up |
+| 7 | C1/C14 voltage rating: read the cans | 2026-10-14 | 42 d | Bring-up |
+| 8 | Brick polarity: meter the plug (center-positive assumed) before crimping J1 | 2026-10-14 | 42 d | Bring-up |
+| 9 | Power harness: jack fit (5.5 x 2.1 mm?), inline fuse holder, switch DC rating, J6 fan | 2026-10-14 | 42 d | Bring-up |
+| 10 | Per-board record: J2, J10/J11, J13, L1, R17/R18 | 2026-10-14 | 42 d | HW |
+| 11 | Check before buying: the drawer 3 IDC kit (FC-10 sockets, 2x3 and 2x5 box headers), the 0805 bin (10 uH for L1), the drawer 2 terminal blocks (5.08 mm for J13) | 2026-10-13 | 43 d | HW |
+| 12 | C6/C7 dielectric: C0G/NP0? | 2026-10-14 | 42 d | HW |
+| 13 | Tags on GitHub: `fw-v1.0` at `b416c16`, `hw-rev-a` at `64a4da5` (Claude sessions can't push tags) | 2026-11-25 | 0 d | Dallas |
+| 14 | Banner on the 2026-10-06 progress doc and its repo snapshot: superseded by STATUS.md, and its 9 to 24 V fallback burns D1 | 2026-11-24 | 1 d | Docs |
 
-## Recently resolved
+Closed 2026-11-24 by the review: the flashed-firmware comparison (folded into item 2), J5's connector type (JST XH 4-pin, 2.50 mm) and the encoder RC pairing (R13/C18 on PD2, R14/C19 on PD3, R15/C20 on PD4).
 
-- 2026-11-25: inventory file in the Project knowledge (`inventory/component-inventory.md`). Hard rule 1 points at it; `docs/inventory.md` keeps the parts Dallas has stated that the file doesn't list, plus the buy list.
-- 2026-10-14: MiniCore install (it's a board package in Boards Manager, not a library).
-- 2026-10-14: `no flash data found ... empty.hex` during Burn Bootloader and `no eeprom data found` during upload are normal (`docs/build-and-flash.md`).
-- 2026-10-14: first ATmega328P's fuses burned off-board on a breadboard jig (J2 isn't fitted on the built boards).
+Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inventory into the Project knowledge, and the new Project instructions (pasted; they match `docs/claude-project-instructions.md`).
+
+## Decisions waiting on Dallas
+
+| Decision | Options | Opened |
+|---|---|---|
+| Display | Keep the 0.96 in, or go 1.3, 1.54 or 2.42 in (`docs/hardware.md` section 12) | 2026-10-14 |
+| DIAG on built boards | Jumper to J7, or leave it off (firmware test 10 only warns) | 2026-10-14 |
+| R17/R18 | Fit only if the OLED is flaky over the ribbon | 2026-10-14 |
+| Knowledge mirror | Mirror all 11 repo files, or only CLAUDE.md and STATUS.md now that the public repo clones anywhere | 2026-11-24 |
+
+## Decision log
+
+`docs/decisions.md`, 26 entries. New ones go at the bottom.

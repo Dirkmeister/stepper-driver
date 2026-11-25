@@ -1,15 +1,15 @@
 # Rev A errata
 
-Known problems with the Rev A boards (ordered by 2026-10-06, delivered 2026-10-12), with workarounds and Rev B fixes. Status reflects what the chats recorded as of 2026-10-14; "unknown" means nobody wrote down what happened on the built boards. Update the status column as things get checked.
+Known problems with the Rev A boards (ordered by 2026-10-06, delivered 2026-10-12), with workarounds and Rev B fixes. Open checks on the built boards live in `STATUS.md`; the Status column gives their item numbers.
 
 | ID | Issue | Severity | Status |
 |---|---|---|---|
-| E1 | DIAG pin doesn't line up with J7 | medium | workaround, not recorded |
-| E2 | J2 / J10 / J11 footprints are IDC box headers the owner didn't have | medium | workaround, not recorded |
-| E3 | J13 terminal pitch not confirmed against inventory | low | unknown |
-| E4 | L1 is an 0805 inductor that isn't in the inventory | low | workaround, not recorded |
-| E5 | Encoder mounting slots exported in the wrong drill mode | low | unknown |
-| E6 | Silkscreen lines below JLC's minimum, including J1's +/- | medium | unknown |
+| E1 | DIAG pin doesn't line up with J7 | medium | workaround; open: STATUS 4 |
+| E2 | J2 / J10 / J11 footprints are IDC box headers the owner didn't have | medium | workaround; open: STATUS 10, 11 |
+| E3 | J13 terminal pitch not confirmed against inventory | low | open: STATUS 10, 11 |
+| E4 | L1 is an 0805 inductor that isn't in the inventory | low | workaround; open: STATUS 10, 11 |
+| E5 | Encoder mounting slots exported in the wrong drill mode | low | open: STATUS 5 |
+| E6 | Silkscreen lines below JLC's minimum, including J1's +/- | medium | open: STATUS 6 |
 | E7 | J1 pin 1 is negative, opposite to convention | design trap | documented |
 
 E2 to E4 came out of Claude's audit of the owner's inventory file during assembly (2026-10-13). J2/J10/J11 were picked without checking the inventory at all; J13 was assumed to be in stock; L1 followed a photo reading of an 0805 inductor book that the inventory file doesn't list. That's why `CLAUDE.md` rule 1 exists.
@@ -19,7 +19,7 @@ E2 to E4 came out of Claude's audit of the owner's inventory file during assembl
 - **Issue:** on the owner's BTT TMC2209 V1.2 the DIAG pin is in line with EN/VM, at the EN/VM end of the module (y 48.9 mm on the board). J7, the DIAG header, sits under the module at the pad 1/16 end (112.39, 66.67), the opposite end. J7 was moved out from under the module in Claude's v04 fixes, then ended up back under it after later edits; that's the ordered version.
 - **Impact:** a DIAG pin pointing down won't land in J7, can keep the module from seating, and can touch copper under the module (the +5V trunk runs there).
 - **Workaround:** dry-fit the module first. Clip or bend the DIAG pin clear. If you want DIAG, run a jumper from the pin to J7. Firmware v1.0 doesn't need DIAG: self-test 10 only reports whether it's wired, as a warning.
-- **Still to do:** measure the pin (which way it points, how many 0.1 in steps from EN) and record what was done on each board.
+- **Open (STATUS item 4):** measure the pin (which way it points, how many 0.1 in steps from EN) and record what was done on each board.
 - **Rev B:** put the DIAG landing where the measured pin actually is, clear of other copper, or make a module footprint with DIAG built in.
 
 ## E2: IDC box-header footprints (J2, J10, J11)
@@ -27,15 +27,7 @@ E2 to E4 came out of Claude's audit of the owner's inventory file during assembl
 - **Issue:** J2 (2x3 ISP) and J10 / J11 (2x5 ribbon) use shrouded IDC box-header footprints. The owner had no box headers.
 - **Workaround:** straight 2x3 / 2x5 male headers fit the same holes. Mark pin 1 with a paint-pen dot beside the square pad, and keep the ribbon's red stripe on pin 1 at both ends. An unkeyed ISP header is easy to plug in rotated, which puts VCC on RESET and GND on MISO; check orientation every time.
 - **Recorded so far:** J2 isn't fitted on the boards built so far ("i dont have J2", 2026-10-14), so the first chip was programmed on a breadboard jig (`docs/build-and-flash.md`). What was fitted at J10/J11 isn't recorded.
-- **Parts, verified on the product pages 2026-10-13 (not bought as far as recorded):**
-
-  | Use | Listing | Verified |
-  |---|---|---|
-  | J10, J11 | https://www.amazon.com/dp/B0F9NSTWCV, 10 pcs 2x5 straight male shrouded header, $5.99 | 2.54 mm, male, 2x5, straight |
-  | Ribbon ends | https://www.amazon.com/dp/B00O9Y6FL6, uxcell 25 pcs FC-10P, $8.19 | 2.54 mm, 10-pin female IDC |
-  | J2 | https://www.amazon.com/dp/B07VQ8VLWG, 10 pcs 2x3 straight male shrouded header, $7.99 | 2.54 mm, male, 2x3, straight |
-
-  Avoid B00W8U8CSC: its title suggests a header + socket set, but the page says 40 female sockets and no headers. Whether the IDC kit in drawer 3 already has FC-10 sockets was never checked.
+- **Parts:** the verified listings are in `docs/inventory.md` (buy list). Check the drawer 3 IDC kit first (STATUS item 11).
 - **Rev B:** footprints only for parts that are in the inventory, or buy the box headers and add them to the inventory before layout.
 
 ## E3: J13 terminal pitch

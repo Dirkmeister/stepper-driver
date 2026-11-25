@@ -46,7 +46,7 @@ optional 12 V fan -> XH 2-pin -> J6 (pin 1 +12V red, pin 2 GND black)
 - **Wire:** 22 AWG for all three; that's the largest XH takes. At the 1.42 A worst case, 2 ft (0.6 m) of total run drops about 46 mV.
 - **Panel jack:** identify the lugs with a meter. The center pin connects to the center hole. Of the other two, the switch lug opens when a plug is inserted; leave it empty and use the sleeve lug.
 - **Building it:** heat shrink on first, strip 1/4 in (6 mm), tin, hook and solder at the panel end; XH crimp at the board end with a ratcheting crimper (IWISS SN-28B or Engineer PA-09). Pliers make crimps that look fine and pull out in a week. Cut each harness to the inside dimension plus 1 to 2 in (25 to 50 mm).
-- **Still open:** whether the drawer 4 jack fits the brick's plug (5.5 x 2.1 mm assumed), whether an inline holder is on hand, the switch's DC rating.
+- **Still open:** STATUS item 9 (jack fit, inline fuse holder, switch DC rating, fan).
 
 ## Ribbon (J10 to J11)
 
@@ -64,4 +64,4 @@ optional 12 V fan -> XH 2-pin -> J6 (pin 1 +12V red, pin 2 GND black)
 4. Run slowly (0.25 rev/s or lower) and watch the coil LEDs: both pairs should alternate red and green. They show the driver switching both outputs, not current reaching the motor; an open motor lead can still light its pair.
 5. With v1.0, Menu > Coil check runs the motor in SpreadCycle at 30 rpm for 2 s and reports each coil (`ok` / `OPEN`) and shorts.
 
-**Open as of 2026-10-14:** on first power-up the motor only vibrated. Likely causes, in order: crossed coil pairs, an open coil connection (bad crimp), or a startup stall (slow down, or raise the current from the default 400 mA). Not resolved yet; record the meter readings and the Coil check result. The two chats disagreed on whether crossed pairs set the driver's open-load flags, so don't rely on Coil check alone until that's been seen on real hardware.
+**Motor only vibrates on board 1 (open: STATUS item 1).** Likely causes, in order: crossed coil pairs, an open coil connection (bad crimp), or a startup stall (slow down, or raise the current from the default 400 mA). Record the meter readings and the Coil check result. The two chats disagreed on whether crossed pairs set the driver's open-load flags, so don't rely on Coil check alone until that's been seen on real hardware.
