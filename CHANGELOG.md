@@ -2,6 +2,12 @@
 
 Newest first. One entry per working session or release. Firmware releases are tagged `fw-vX.Y`, ordered board revisions `hw-rev-X`. Everything before 2026-10-14 was reconstructed from the two design chats (`docs/history/sources.md`).
 
+## 2026-11-25
+
+**Docs: Restructure** (plan: the 2026-11-24 project review)
+- Step 1: the backup is the 2026-11-24 project export zip.
+- Step 2: pushed chat 1's repo bundle to GitHub, a fast-forward from the README commit. The bundle matched the Project knowledge copies (firmware byte-identical). The `fw-v1.0` tag push was refused (HTTP 403), so the tag still has to be created on GitHub. Touched: STATUS.md.
+
 ## 2026-10-14
 
 **Repo**

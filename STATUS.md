@@ -10,7 +10,7 @@
 | Bring-up | First power-up 2026-10-14: board alive, **motor only vibrates** (open) |
 | Firmware | v1.0 (2026-10-12). First chip programmed 2026-10-14 on a breadboard ISP jig (fuse burn confirmed; the upload step wasn't recorded). The real-board self-test result hasn't been recorded |
 | Design files | KiCad project, production zip and inventory are still only on the owner's PC |
-| Repo and docs | created 2026-10-14 from both chats |
+| Repo and docs | created 2026-10-14 from both chats; pushed to GitHub 2026-11-25. Tag `fw-v1.0` isn't on GitHub yet (see open issues) |
 
 ## Open issues
 
@@ -25,6 +25,7 @@
 - [ ] **Per-board build record:** what went into J2, J10/J11, J13, L1, R17/R18.
 - [ ] **Add the design files** to `hardware/` and the inventory to `docs/component-inventory.md`, and put the inventory in the claude.ai Project knowledge (`hardware/README.md`).
 - [ ] **Compare the repo firmware with the copy that was flashed** (it was rebuilt from the chat; MD5 `9813bde1ffaefffa24b478bb6aa437b4`).
+- [ ] **Tag `fw-v1.0` on GitHub** at commit `b416c16`. Tag pushes from Claude sessions are refused (HTTP 403, 2026-11-25), so Dallas creates it (GitHub Releases, or git on the PC).
 - [ ] **Power harness questions never answered:** does the drawer 4 jack fit the brick's plug (5.5 x 2.1 mm assumed), is an inline fuse holder on hand, what DC rating are the panel switches, is there a fan for J6.
 - [ ] **IDC parts:** check the drawer 3 IDC kit for FC-10 sockets before buying; verified listings are in `docs/errata-rev-a.md` (E2).
 
