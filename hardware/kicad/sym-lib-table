@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "tmc2209 module") (type "KiCad") (uri "D:/1File System/2Projects/3Mini Projects/Stepper Driver/Universal motor driver v01") (options "") (descr ""))
+)
