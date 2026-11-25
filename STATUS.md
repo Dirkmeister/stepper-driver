@@ -15,15 +15,14 @@ Updated 2026-11-25 (Docs: Restructure). State and open items only: history goes 
 
 ## Active thread
 
-Docs: Restructure (step 10 left). Next: Bring-up: Motor only vibrates.
+None. Next: Bring-up: Motor only vibrates (seed in `docs/seeds.md`).
 
 ## Queue
 
-1. Docs: Restructure (finishing)
-2. Bring-up: Motor only vibrates
-3. FW: v1.1 (bring-up fixes first, then the auto test; `docs/firmware.md` Backlog)
-4. HW: Boards 2 to 5, a build record each
-5. HW: Front panel for the UI board
+1. Bring-up: Motor only vibrates
+2. FW: v1.1 (bring-up fixes first, then the auto test; `docs/firmware.md` Backlog)
+3. HW: Boards 2 to 5, a build record each
+4. HW: Front panel for the UI board
 
 ## Open items (ages on 2026-11-25)
 
@@ -59,3 +58,5 @@ Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inven
 ## Decision log
 
 `docs/decisions.md`, 30 entries. New ones go at the bottom.
+
+Health check 2026-11-25: 1 red (items 1 to 9), 3 yellow (2 fixed the same day), 3 green. Next one due 2026-12-09 or after 5 threads, whichever comes first.
