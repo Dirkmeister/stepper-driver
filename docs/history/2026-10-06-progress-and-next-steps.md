@@ -7,6 +7,8 @@ Date and author chips from the doc are shown in [brackets]. One unanswered comme
 on the DIAG item: "Is clip-and-jumper to J7 the fix you want for DIAG, or measure first and decide?"
 -->
 
+> **RETIRED 2026-11-25:** replaced by [STATUS.md](../../STATUS.md). Two known errors below: the "any 9 to 24 V DC adapter" fallback burns D1 or blows the fuse (keep the input at 9 to 14 V while D1 is fitted), and its TMCStepper error codes are inverted (`test_connection()` returns 0 for OK).
+
 # Stepper Tester: Progress and Next Steps
 
 [date: 2026-10-06] · [@Dallas]
