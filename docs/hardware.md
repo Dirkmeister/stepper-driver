@@ -2,7 +2,7 @@
 
 Compiled on 2026-10-14 from the two design chats (see `docs/history/sources.md`). It reflects the final schematic (Claude's v06, installed as `Universal motor driver v01.kicad_sch`) and the board as ordered (`Universal_motor_driver_v09_tabs.kicad_pcb`). Where the chats were ambiguous, this doc says so instead of guessing.
 
-**The KiCad files are the authority.** Once they're in `hardware/kicad/`, check this doc against them and fix whichever is wrong. Known Rev A problems are in `docs/errata-rev-a.md`.
+**The KiCad files are the authority.** They're in `hardware/kicad/` since 2026-11-25; where this doc and they disagree, fix this doc (checking the whole doc against them is STATUS item 15). Known Rev A problems are in `docs/errata-rev-a.md`.
 
 ## Contents
 
@@ -71,7 +71,7 @@ flowchart LR
 | Ordered board file | `Universal_motor_driver_v09_tabs.kicad_pcb`, installed under the project's root board name |
 | Production zip | `production/`: inner `Universal_motor_driver_v01.zip` (gerbers + drills, the file JLC needs), `bom.csv`, `designators.csv`, `positions.csv` (LCSC part numbers blank) |
 
-Gerber check before ordering (Claude's script on the production zip): one closed outline through both tabs; 12 mouse-bite holes of 0.5 mm in the NPTH file; 8 mounting holes of 3.2 mm NPTH; one 1.2 mm NPTH for J8's locating peg; 261 vias at 0.3 mm drill / 0.6 mm pad; smallest trace 0.2 mm; copper at least 0.5 mm from every edge; GND, +12V and F_GND pours filled. Two problems were flagged and their fix wasn't confirmed before ordering (errata E5, E6).
+Gerber check before ordering (Claude's script on the production zip): one closed outline through both tabs; 12 mouse-bite holes of 0.5 mm in the NPTH file; 8 mounting holes of 3.2 mm NPTH; one 1.2 mm NPTH for J8's locating peg; 261 vias at 0.3 mm drill / 0.6 mm pad; smallest trace 0.2 mm; copper at least 0.5 mm from every edge; GND, +12V and F_GND pours filled. Two problems were flagged before ordering, and both reached the fab: the production zips in `hardware/production/rev-A/` have routed encoder slots and 0.064 mm silkscreen lines (errata E5, E6).
 
 Routing: the owner routed both boards by hand. A clearance check on the main board found 0 violations at 0.2 mm across 537 tracks; it ran before the last connections, the front board and the pours were finished and wasn't repeated. Then a full top-layer GND pour plus 122 added GND vias (76 stitching, 46 grid), and GND vias for C18 to C21.
 
@@ -85,13 +85,13 @@ J1 pin 1 JACK_N -> Q1 drain;  Q1 source -> GND;  Q1 gate <- R1 10k <- +12V
 
 - **J1 pin 1 is the NEGATIVE input (JACK_N), pin 2 is positive (VIN_SW).** It's backwards from the usual convention. The board's `+`/`-` marks at J1 are drawn at 0.064 mm and may not have printed (E6). Crimp the harness to match.
 - **Reverse polarity:** Q1 (IRFZ44N) sits in the ground return. Plugged in backwards, Q1 stays off and nothing powers up. Q1's tab is its drain (JACK_N), so it is live: keep standoffs, screws and any grounded metal off it.
-- **Fuse:** 2 A mini blade in an inline holder on the + wire. It's off-board on purpose; a series fuse can't be a do-not-populate footprint without breaking the net. Switch-on surge into C1 is about 0.34 A^2s (0.41 with C14), under the roughly 1 to 2 A^2s needed to melt a fast 2 A fuse, so slow-blow isn't required (estimate).
+- **Fuse:** 2 A mini blade in an inline holder on the + wire. It's off-board on purpose; a series fuse can't be a do-not-populate footprint without breaking the net. Switch-on surge into C1: I^2t = V^2 x C / 2R = (12 V)^2 x 470 uF / (2 x 0.1 ohm) = 0.34 A^2s, or 0.41 A^2s with C14 (570 uF total), assuming 0.1 ohm of loop resistance (brick, wiring, fuse and C1 ESR; not measured). That's under the roughly 1 to 2 A^2s needed to melt a fast 2 A fuse, so slow-blow isn't required (estimate).
 - **Switch:** any panel switch rated at least 2 A DC on J4. The KCD1-101 rocker (10 A at 125 V AC) was the planned part.
 - **Rail protection:** C1 470 uF (25 V assumed from a photo of its drawer; read the can) is the first part after the switch. D1 (1N4744A, 15 V 1 W zener) clamps +12V; D5 (SMBJ15A TVS, SMB) is a do-not-populate upgrade spot beside it.
   - With D1 fitted, keep the input between 9 and 14 V. D1 starts conducting at 14.25 V (15 V - 5%), so a 19 or 24 V adapter burns D1 or blows the fuse. C1 and C14 are assumed to be 25 V parts (check the cans; the firmware's 25 V alarm assumes it).
-- **5 V:** U1 L7805 (TO-220, tab = GND), C2 470 nF 50 V at the input, C3 100 nF + C4 10 uF at the output. Logic load estimate 40 to 70 mA, so 0.28 to 0.47 W in U1 at 12 V, 14 to 24 C rise, no heatsink (estimates).
+- **5 V:** U1 L7805 (TO-220, tab = GND), C2 470 nF 50 V at the input, C3 100 nF + C4 10 uF at the output. Logic load estimate 40 to 70 mA, so U1 dissipates (12 V - 5 V) x 0.040 to 0.070 A = 0.28 to 0.49 W; at the datasheet's 50 C/W (TO-220, no heatsink) that's a 25 to 44 F (14 to 24.5 C) rise (estimates).
 - **Fan header J6:** +12V after the switch, live whenever the switch is on. Optional.
-- **Worst-case input current:** 1.32 A design value (1.42 A with a 0.1 A fan), 71% of the 2 A fuse (estimates).
+- **Worst-case input current:** 1.32 A design value (how it was derived isn't recorded), 1.42 A with a 0.1 A fan, which is 1.42 / 2 = 71% of the 2 A fuse (estimates).
 - **VM sense:** +12V -> R4 10k -> PC0 -> R5 1.8k -> GND, C10 100 nF at PC0, TP8 on the node. Ratio 1.8 / 11.8 = 0.1525; scale (10 + 1.8) / 1.8 = 6.556 x the ADC voltage; 0.032 V per count; 12.6 V reads 1.92 V at the pin; 29 V would read 4.42 V. The ADC reference is AVCC (the 7805 output), so the reading can be off by about +-0.48 V until trimmed in the firmware menu.
 - **Ground:** there is no chassis ground. Measure and probe against board GND (TP3/TP4), never against the jack's minus, because Q1 sits between them.
 
@@ -126,7 +126,7 @@ ATmega328P-PU (U2). The Arduino pin numbers are the same on an Uno, a Nano and t
 | 27 | PC4 | A4 | SDA | J10 pin 5; R18 4.7k pull-up (DNP) |
 | 28 | PC5 | A5 | SCL | J10 pin 3; R17 4.7k pull-up (DNP) |
 
-The three encoder lines each get a 10k pull-up (R13 to R15) and a 10 nF cap (C18 to C20), tau 100 us. The exact resistor/cap to line pairing isn't recorded consistently in the chats; read it from the schematic.
+The three encoder lines each get a 10k pull-up (R13 to R15) and a 10 nF cap (C18 to C20), tau 100 us. Pairs, from the production netlist: R13/C18 on PD2 (ENC_A), R14/C19 on PD3 (ENC_B), R15/C20 on PD4 (ENC_SW).
 
 ## 5. Driver module interface
 
@@ -159,7 +159,7 @@ U7 is a BTT TMC2209 V1.2 StepStick on two 1x8 female headers, logic pins on one 
 | J6 | fan (`FAN 12V`), optional | JST XH 2-pin | 1 +12V, 2 GND |
 | J2 | ISP (`ISP`) | 2x3, 2.54 mm; footprint is a shrouded IDC box header (E2) | 1 MISO (PB4), 2 VCC (via J3), 3 SCK (PB5), 4 MOSI (PB3), 5 RESET (PC6), 6 GND |
 | J3 | ISP power jumper (`ISP PWR`, `OFF W/ 12V`) | 1x2 header + shunt | connects J2 pin 2 to +5V. On only when the programmer powers the board; **off whenever the brick is plugged in** (two 5 V sources would fight) |
-| J5 | STEP/DIR/EN tap | 4-pin; planned as a 2.54 mm header, but Claude's read of the board file (2026-10-13) lists it as JST XH: check | 1 STEP (PB1), 2 DIR (PD6), 3 EN (PD7), 4 GND. Shares nets with U7; pull U7 before driving an external driver from it |
+| J5 | STEP/DIR/EN tap | JST XH 4-pin vertical, 2.50 mm (`JST_XH_B4B-XH-A` in the board file; planned as a 2.54 mm header) | 1 STEP (PB1), 2 DIR (PD6), 3 EN (PD7), 4 GND. Shares nets with U7; pull U7 before driving an external driver from it |
 | J7 | DIAG link | 1-pin header | to PB0; jumper from the module's DIAG pin (E1) |
 | J8 | motor | JST XH 4-pin, footprint is the "AM" variant with a locating-peg hole (a plain B4B-XH-A fits; the hole stays empty) | 1 B2, 2 B1, 3 A1, 4 A2 |
 | J12 | motor | 1x4 pin header, 2.54 mm | same as J8 |
@@ -261,7 +261,7 @@ On-board parts by reference. DNP = footprint only. Values are from the final sch
 | J2 | 2x3 | IDC box-header footprint | ISP (E2) |
 | J10, J11 | 2x5 | IDC box-header footprint | ribbon (E2) |
 | J3 | 1x2 + shunt | 2.54 mm | ISP power jumper |
-| J5 | 4-pin | JST XH per the board file (planned 2.54 mm header): check | STEP/DIR/EN tap |
+| J5 | JST XH 4-pin | B4B-XH-A vertical, 2.50 mm | STEP/DIR/EN tap |
 | J7 | 1x1 | 2.54 mm | DIAG link (E1) |
 | J9 | 1x6 | 2.54 mm | spare GPIO |
 | TP1 to TP8 | test loop | Keystone 5000-5004 miniature | |
@@ -277,10 +277,11 @@ Off-board: panel DC jack (5.5 x 2.1 mm planned; fit with the brick's plug not ye
 | Default class | 0.2 mm clearance; signals 0.25 mm |
 | JACK_N | 2.0 mm |
 | +5V trunk, AVCC feed, F_5V | 0.5 mm |
-| Vias | 0.6 / 0.3 mm signal; two 0.8 / 0.4 mm wherever a Power net changes layer (about 2.2 A per via, estimate) |
+| Vias | 0.6 / 0.3 mm signal; two 0.8 / 0.4 mm wherever a Power net changes layer (about 2.2 A per via, see Via current math) |
 | Pours | top: +12V zone priority 1, GND priority 0; bottom: solid GND; 0.3 mm clearance, 0.5 mm thermal spokes; front board: F_GND both layers |
 | Crystal | short, equal traces; nothing under it on either layer; no vias on XTAL nets; GND guard pour |
 | Power width math | IPC-2221, 2 A, 1 oz, 10 C rise: 0.78 mm, rounded up to 1.0 mm |
+| Via current math | IPC-2221 external layer, I = 0.048 x dT^0.44 x A^0.725 (dT in C, A in mil^2). A 0.4 mm drill with 1 mil (25 um) plating: A = pi x 15.75 mil x 1 mil = 49.5 mil^2, so I = 0.048 x 2.754 x 16.92 = 2.24 A per via at an 18 F (10 C) rise. Two per layer change carry 4.5 A against the 1.42 A worst case (estimate; plating thickness assumed) |
 
 ## 11. Silkscreen
 

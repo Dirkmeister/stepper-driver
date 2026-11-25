@@ -44,14 +44,14 @@ E2 to E4 came out of Claude's audit of the owner's inventory file during assembl
 
 ## E5: Encoder mounting slots
 
-- **Issue:** SW4's two 1.5 mm mounting slots were exported as routed slots instead of the "alternate drill mode" (G85) JLC asks for. The fix was recommended before ordering; whether it was applied isn't recorded.
+- **Issue:** SW4's two 1.5 mm mounting slots were exported as routed slots instead of the "alternate drill mode" (G85) JLC asks for. The fix was recommended before ordering but didn't reach the fab: both production zips in `hardware/production/rev-A/` have routed slots (a G85 drill file was exported at 02:18 and never packaged).
 - **Impact:** JLC may have drilled round holes.
 - **Workaround:** if the holes are round, file them out or snip the tabs. The panel nut holds the encoder.
 - **Fix for the next order:** KiCad, File > Fabrication Outputs > Drill Files, "Oval holes drill mode: Use alternate drill mode", regenerate, and check the slots are oblong in JLC's gerber viewer.
 
 ## E6: Silkscreen too thin
 
-- **Issue:** J1's `+`/`-` symbol lines are 0.064 mm, some footprint graphics are 0.10 mm, and the added 0.8 mm labels use a 0.12 mm stroke. Claude's figure for JLC's minimum is about 0.15 mm line and 1.0 mm text height (confirm on JLC's capabilities page).
+- **Issue:** J1's `+`/`-` symbol lines are 0.064 mm, some footprint graphics are 0.10 mm, and the added 0.8 mm labels use a 0.12 mm stroke. Claude's figure for JLC's minimum is about 0.15 mm line and 1.0 mm text height (confirm on JLC's capabilities page). The production gerbers confirm the widths: F.Silkscreen uses 0.0637, 0.100 and 0.120 mm apertures.
 - **Impact:** some labels may be faint or missing. The one that matters is J1's polarity, because J1 is wired backwards from convention (E7).
 - **Workaround:** mark J1's polarity on each board by hand.
 - **Rev B:** lines at least 0.15 mm, text at least 1.0 mm, larger J1 marks.
