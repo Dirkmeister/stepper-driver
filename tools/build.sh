@@ -11,7 +11,7 @@
 #        and tools/fetch_deps.sh run once (pinned ArduinoCore-avr and MiniCore sources).
 # Output: build/<core>/fw.elf and fw.hex at the repo root; sizes printed at the end.
 #
-# Reference (v1.0, avr-gcc 7.3.0): minicore 25208 B flash / 490 B RAM, arduino 25264 B / 490 B.
+# Reference sizes (avr-gcc 7.3.0): CLAUDE.md, Firmware checks.
 set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CORE=${1:-minicore}; shift || true
