@@ -10,7 +10,7 @@ Why the design is the way it is. "Owner" means Dallas decided or confirmed it; "
 | 4 | Tie both PDN header pins to the UART net, 1k on TX, MS1/MS2/CLK to GND | BTT bridges UART to one pin, other brands to the other; tying both covers either. MS pins set address 0; CLK to GND selects the internal clock | jumpering pin 5 to 6 (rejected: pin 6 is CLK) | accepted |
 | 5 | SSD1306 0.96 in I2C OLED | On hand; can draw bar graphs and result screens | 1602 LCD with PCF8574 (on hand, text only) | owner |
 | 6 | ALT-1205T 12 V brick as the supply | On hand; no bench power hub | 24 V supply | owner |
-| 7 | L7805 linear regulator for 5 V | Silent next to the VM ADC; only 0.28 to 0.47 W at 12 V | buck module (on hand) | accepted |
+| 7 | L7805 linear regulator for 5 V | Silent next to the VM ADC; only 0.28 to 0.49 W at 12 V (`docs/hardware.md` section 3) | buck module (on hand) | accepted |
 | 8 | Reverse polarity by a low-side IRFZ44N | No voltage drop; no P-channel FETs in stock | series 1N5822 Schottky | accepted (owner asked why, then placed it) |
 | 9 | 2 A mini blade fuse, inline in the J1 harness, not on the board | Owner has the fuse kit and holders; a series fuse can't be an optional footprint without breaking the net | PTC fuse; board fuse footprint | owner (parts), accepted (placement) |
 | 10 | Panel DC jack + XH harnesses for jack, switch and fan | Easier with an enclosure | board-mount jack with its own fuse (dropped) | owner |
@@ -30,3 +30,6 @@ Why the design is the way it is. "Owner" means Dallas decided or confirmed it; "
 | 24 | Driver UART at 115,200 nominal | Driver measures baud per message, so the 328P's +2% error doesn't matter; twice as fast as 57,600 | 57,600 | accepted |
 | 25 | Program chips on a breadboard jig before they go on the board | J2 not fitted: "i dont have J2, id like to program the atmega before placing on the pcb" | in-circuit via J2 | owner |
 | 26 | Git repo (`Dirkmeister/stepper-driver`, 2026-10-14) as the source of truth, docs in the repo, mirrored into the claude.ai Project | Proper documentation and revision control | chat history and Docs only | owner |
+| 27 | Revive the project, scoped small, and restructure it (review 2026-11-24, restructure 2026-11-25) | The tester is one bring-up fix from working, and his other machines run steppers too | maintain, merge, archive | owner |
+| 28 | Keep the parts inventory in the claude.ai Project knowledge, not in this repo | The repo is public, and the inventory is his file for every project | `docs/component-inventory.md` in the repo (the earlier plan) | owner |
+| 29 | `docs/inventory.md` keeps a list of the parts he has stated that the inventory file doesn't list | The file has no modules, fuses or electrolytics; without the list, rule 1 would call parts already on the board buy items | buy list only (the review's plan) | owner |

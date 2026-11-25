@@ -43,6 +43,7 @@ Docs: Restructure (steps 7 to 10 left). Next: Bring-up: Motor only vibrates.
 | 12 | C6/C7 dielectric: C0G/NP0? | 2026-10-14 | 42 d | HW |
 | 13 | Tags on GitHub: `fw-v1.0` at `b416c16`, `hw-rev-a` at `64a4da5` (Claude sessions can't push tags) | 2026-11-25 | 0 d | Dallas |
 | 14 | Banner on the 2026-10-06 progress doc and its repo snapshot: superseded by STATUS.md, and its 9 to 24 V fallback burns D1 | 2026-11-24 | 1 d | Docs |
+| 15 | Check `docs/hardware.md` against the KiCad files now in `hardware/kicad/` (the design files win) | 2026-11-25 | 0 d | HW |
 
 Closed 2026-11-24 by the review: the flashed-firmware comparison (folded into item 2), J5's connector type (JST XH 4-pin, 2.50 mm) and the encoder RC pairing (R13/C18 on PD2, R14/C19 on PD3, R15/C20 on PD4).
 
@@ -59,4 +60,4 @@ Closed 2026-11-25 by Docs: Restructure: design files into `hardware/`, the inven
 
 ## Decision log
 
-`docs/decisions.md`, 26 entries. New ones go at the bottom.
+`docs/decisions.md`, 29 entries. New ones go at the bottom.
