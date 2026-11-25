@@ -1,28 +1,34 @@
 # Hardware design files
 
-**Not added yet.** The KiCad project and production files only exist on the owner's PC. Until they're here, `docs/hardware.md` (compiled from the design chats) is the only reference, and it can't be checked against the real files.
+Rev A as ordered from JLCPCB, copied byte-for-byte from the owner's PC on 2026-11-25. Tag `hw-rev-a` marks the commit that added them. Where these files and `docs/hardware.md` (compiled from the design chats) disagree, the files win.
 
-## What goes where
+## What's here
 
-| Path | Put here | Notes |
+| Path | What | Notes |
 |---|---|---|
-| `kicad/` | the whole KiCad project folder: `Universal motor driver v01.kicad_pro`, `.kicad_sch`, `.kicad_pcb`, plus `sym-lib-table`, `fp-lib-table` and any project library (`tmc2209 module` / `stepper_tester.kicad_sym`, custom footprints) | The `.kicad_pcb` must be the ordered one (Claude's `v09_tabs`, installed under the root name). Check it matches before committing. |
-| `production/rev-A/` | exactly what was uploaded to JLCPCB: `Universal_motor_driver_v01.zip` (gerbers + drills), plus `bom.csv`, `designators.csv`, `positions.csv` from the same export | This freezes Rev A as fabricated. |
-| `../docs/component-inventory.md` | the owner's inventory file | Also add it to the claude.ai Project knowledge. |
-| `bom/` (optional) | `stepper_tester_bom.xlsx`, the generic BOM from the design chat | Its designators are older than the final schematic; `docs/hardware.md` section 9 is newer. |
+| `kicad/Universal motor driver v01.kicad_pro` | KiCad project | the project name has spaces |
+| `kicad/Universal motor driver v01.kicad_sch` | root schematic, the only sheet | title block: Universal Stepper Tester, rev A, 2026-10-05 |
+| `kicad/Universal motor driver v01.kicad_pcb` | the board as ordered | same file as KiCad's 2026-10-06 02:15 backup, saved between the two gerber exports below, which are identical |
+| `kicad/stepper_tester.kicad_sym` | project symbol library | holds `BTT_TMC2209_V1.2` |
+| `kicad/sym-lib-table` | project symbol library table | see Known issues |
+| `production/rev-A/` | fab outputs from 2026-10-06 | see below |
 
-`.gitignore` already skips KiCad backups (`*-backups/`), `fp-info-cache`, lock files and autosaves, so you can copy the whole project folder in.
+## Production files (Rev A)
 
-## Adding them
+| File | Exported (2026-10-06, CDT) | Notes |
+|---|---|---|
+| `Universal_motor_driver_v01.zip` | 02:19 | gerbers and drills, the file JLC needs |
+| `bom.csv`, `positions.csv`, `designators.csv`, `netlist.ipc` | 02:19 | same export; LCSC part numbers blank |
+| `production.zip` | 02:13 | an earlier export of the same set |
 
-From a clone of this repo on the PC (GitHub Desktop or git):
+Which zip was uploaded isn't recorded, and it doesn't matter: the two exports' gerbers and drills match line for line apart from the creation time. Both carry the two known export problems: the encoder slots are routed slots, not the G85 mode JLC asks for (errata E5), and the silkscreen has lines down to 0.064 mm (E6). A G85 drill file was exported at 02:18 but never went into a zip.
 
-1. Copy the files into the paths above.
-2. Commit: `hw: add Rev A KiCad project as ordered` and `hw: add Rev A production files`.
-3. Tag the commit that holds the ordered design: `hw-rev-a`.
-4. Push.
+`.gitattributes` stores everything under `production/` exactly as exported (the csv and ipc files are CRLF).
 
-Or attach the files in a chat in the Project and ask Claude to commit them.
+## Known issues in these files
+
+- `sym-lib-table` maps the `tmc2209 module` library to the project folder by an absolute path on the owner's PC, not to `stepper_tester.kicad_sym`, so it won't resolve in a clone. The schematic keeps its own copy of every symbol, so it opens anyway. For Rev B, point it at `${KIPRJMOD}/stepper_tester.kicad_sym`.
+- Not committed, still on the owner's PC: KiCad backups, `.kicad_prl` (local window state), 7 older or unused `.kicad_sch` files, the loose 02:18 drill files and the `.csv` / `.xlsx` spreadsheets in the project folder.
 
 ## Revisions
 
@@ -31,4 +37,4 @@ Or attach the files in a chat in the Project and ask Claude to commit them.
 | A | ordered by 2026-10-06, delivered 2026-10-12 | built, under test | errata in `docs/errata-rev-a.md` |
 | B | | not started | candidate changes at the end of the errata doc |
 
-From Rev B on: work on a branch (`hw/rev-b`), keep the KiCad project name, bump the silkscreen revision text, and tag `hw-rev-b` at the commit that gets ordered.
+From Rev B on: work on a branch (`hw/rev-b`), keep the KiCad project name, bump the silkscreen revision text, and tag `hw-rev-b` at the commit that gets ordered. Dallas creates tags (GitHub Releases or git on the PC): tag pushes from Claude sessions are refused.

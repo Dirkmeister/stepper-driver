@@ -9,8 +9,8 @@
 | Hardware | Rev A: 5 boards delivered 2026-10-12. At least one built (2026-10-13 to 14). Known issues: `docs/errata-rev-a.md` |
 | Bring-up | First power-up 2026-10-14: board alive, **motor only vibrates** (open) |
 | Firmware | v1.0 (2026-10-12). First chip programmed 2026-10-14 on a breadboard ISP jig (fuse burn confirmed; the upload step wasn't recorded). The real-board self-test result hasn't been recorded |
-| Design files | KiCad project, production zip and inventory are still only on the owner's PC |
-| Repo and docs | created 2026-10-14 from both chats; pushed to GitHub 2026-11-25. Tag `fw-v1.0` isn't on GitHub yet (see open issues) |
+| Design files | KiCad project and Rev A production files in `hardware/` since 2026-11-25. The inventory is still only on the owner's PC |
+| Repo and docs | created 2026-10-14 from both chats; pushed to GitHub 2026-11-25. Tags `fw-v1.0` and `hw-rev-a` aren't on GitHub yet (see open issues) |
 
 ## Open issues
 
@@ -23,9 +23,9 @@
 - [ ] **C1 / C14 voltage rating:** read it on the cans. The 9 to 14 V input limit and the firmware's 25 V alarm both assume 25 V.
 - [ ] **Brick polarity:** meter the brick's plug (center-positive assumed, never checked) before crimping the J1 harness.
 - [ ] **Per-board build record:** what went into J2, J10/J11, J13, L1, R17/R18.
-- [ ] **Add the design files** to `hardware/` and the inventory to `docs/component-inventory.md`, and put the inventory in the claude.ai Project knowledge (`hardware/README.md`).
+- [ ] **Add the owner's inventory file** to the claude.ai Project knowledge and point hard rule 1 at it (the design files went into `hardware/` on 2026-11-25).
 - [ ] **Compare the repo firmware with the copy that was flashed** (it was rebuilt from the chat; MD5 `9813bde1ffaefffa24b478bb6aa437b4`).
-- [ ] **Tag `fw-v1.0` on GitHub** at commit `b416c16`. Tag pushes from Claude sessions are refused (HTTP 403, 2026-11-25), so Dallas creates it (GitHub Releases, or git on the PC).
+- [ ] **Create the tags on GitHub:** `fw-v1.0` at commit `b416c16`, `hw-rev-a` at `64a4da5`. Tag pushes from Claude sessions are refused (HTTP 403, 2026-11-25), so Dallas creates them (GitHub Releases, or git on the PC).
 - [ ] **Power harness questions never answered:** does the drawer 4 jack fit the brick's plug (5.5 x 2.1 mm assumed), is an inline fuse holder on hand, what DC rating are the panel switches, is there a fan for J6.
 - [ ] **IDC parts:** check the drawer 3 IDC kit for FC-10 sockets before buying; verified listings are in `docs/errata-rev-a.md` (E2).
 
@@ -38,7 +38,7 @@
 ## Next steps
 
 1. Get a clean self test (11/11, or 10 + the DIAG warning) and a motor spinning on board 1. Record it here.
-2. Add the KiCad project and production files; tag `hw-rev-a`. Add the inventory file.
+2. Create the `fw-v1.0` and `hw-rev-a` tags on GitHub. Add the inventory file.
 3. Firmware v1.1: fixes from real-hardware testing first, then the auto test (ramp until stall, report max rpm at the set current), see `docs/firmware.md` Backlog.
 4. Build and test boards 2 to 5 with a per-board record.
 5. Front panel for the UI board; M3 standoffs.

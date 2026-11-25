@@ -7,6 +7,7 @@ Newest first. One entry per working session or release. Firmware releases are ta
 **Docs: Restructure** (plan: the 2026-11-24 project review)
 - Step 1: the backup is the 2026-11-24 project export zip.
 - Step 2: pushed chat 1's repo bundle to GitHub, a fast-forward from the README commit. The bundle matched the Project knowledge copies (firmware byte-identical). The `fw-v1.0` tag push was refused (HTTP 403), so the tag still has to be created on GitHub. Touched: STATUS.md.
+- Step 3: added the Rev A KiCad project (5 files) and production files (6 files) to `hardware/`, byte-for-byte from the owner's PC; `.gitattributes` now keeps `hardware/production/` as exported. The 02:13 and 02:19 exports carry identical gerbers and drills. `hw-rev-a` belongs on `64a4da5`. Touched: hardware/README.md, STATUS.md.
 
 ## 2026-10-14
 
