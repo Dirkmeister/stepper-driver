@@ -7,14 +7,14 @@ The owner is Dallas (Dirkmeister on GitHub). Boards are signed "-DK".
 ## Source of truth
 
 1. **This repo** (`Dirkmeister/stepper-driver`). `STATUS.md` is the current state and open issues; `docs/` is the reference; `CHANGELOG.md` is the history.
-2. **The owner's files** once added: KiCad project in `hardware/kicad/`, inventory in `docs/component-inventory.md`. When the design files and `docs/hardware.md` disagree, the design files win; fix the doc.
+2. **The owner's files:** the KiCad project in `hardware/kicad/`, and his parts inventory, the "Krech Protolab Component Inventory", in the claude.ai Project knowledge as `inventory/component-inventory.md` (not in this repo). When the design files and `docs/hardware.md` disagree, the design files win; fix the doc.
 3. **Chat history** is background only. If a chat and the repo disagree, the repo wins unless the owner says otherwise. Don't rebuild facts from memory of earlier chats.
 
 ## Hard rules
 
 Each one comes from a real mistake in this project.
 
-1. **Inventory first.** Before recommending any part, footprint or purchase, check it against the owner's inventory file. If it isn't there, say so plainly and mark it as a buy item. Never assume he has a part. Rev A shipped with three footprints for parts he didn't have (errata E2 to E4), and he found out mid-assembly.
+1. **Inventory first.** Before recommending any part, footprint or purchase, check it against the owner's inventory file and the parts he's stated in `docs/inventory.md`. If it isn't in either, say so plainly and mark it as a buy item. Never assume he has a part. Rev A shipped with three footprints for parts he didn't have (errata E2 to E4), and he found out mid-assembly.
 2. **Verify purchase links on the actual product page.** Open each listing and read it (pitch, pin count, gender, mount type, quantity) before recommending it; give the URL and what you checked. Never pick from titles or search snippets. A title-only pick turned out to be 40 sockets and no headers.
 3. **Answer the question that was asked.** A yes/no question gets yes/no. Don't edit files, rearrange layouts or "fix" things he didn't ask for; list proposed fixes and ask before each one. When he asks for hardware upgrade options, give hardware options, not a firmware workaround.
 4. **Physical facts come from the design files, the datasheet, or the owner's measurement.** Label estimates as estimates and show the math. If a dimension or pin position matters and isn't known, ask him to measure it.

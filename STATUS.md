@@ -9,7 +9,7 @@
 | Hardware | Rev A: 5 boards delivered 2026-10-12. At least one built (2026-10-13 to 14). Known issues: `docs/errata-rev-a.md` |
 | Bring-up | First power-up 2026-10-14: board alive, **motor only vibrates** (open) |
 | Firmware | v1.0 (2026-10-12). First chip programmed 2026-10-14 on a breadboard ISP jig (fuse burn confirmed; the upload step wasn't recorded). The real-board self-test result hasn't been recorded |
-| Design files | KiCad project and Rev A production files in `hardware/` since 2026-11-25. The inventory is still only on the owner's PC |
+| Design files | KiCad project and Rev A production files in `hardware/` since 2026-11-25. The inventory is in the Project knowledge (`inventory/component-inventory.md`), not the repo |
 | Repo and docs | created 2026-10-14 from both chats; pushed to GitHub 2026-11-25. Tags `fw-v1.0` and `hw-rev-a` aren't on GitHub yet (see open issues) |
 
 ## Open issues
@@ -23,7 +23,6 @@
 - [ ] **C1 / C14 voltage rating:** read it on the cans. The 9 to 14 V input limit and the firmware's 25 V alarm both assume 25 V.
 - [ ] **Brick polarity:** meter the brick's plug (center-positive assumed, never checked) before crimping the J1 harness.
 - [ ] **Per-board build record:** what went into J2, J10/J11, J13, L1, R17/R18.
-- [ ] **Add the owner's inventory file** to the claude.ai Project knowledge and point hard rule 1 at it (the design files went into `hardware/` on 2026-11-25).
 - [ ] **Compare the repo firmware with the copy that was flashed** (it was rebuilt from the chat; MD5 `9813bde1ffaefffa24b478bb6aa437b4`).
 - [ ] **Create the tags on GitHub:** `fw-v1.0` at commit `b416c16`, `hw-rev-a` at `64a4da5`. Tag pushes from Claude sessions are refused (HTTP 403, 2026-11-25), so Dallas creates them (GitHub Releases, or git on the PC).
 - [ ] **Power harness questions never answered:** does the drawer 4 jack fit the brick's plug (5.5 x 2.1 mm assumed), is an inline fuse holder on hand, what DC rating are the panel switches, is there a fan for J6.
@@ -38,7 +37,7 @@
 ## Next steps
 
 1. Get a clean self test (11/11, or 10 + the DIAG warning) and a motor spinning on board 1. Record it here.
-2. Create the `fw-v1.0` and `hw-rev-a` tags on GitHub. Add the inventory file.
+2. Create the `fw-v1.0` and `hw-rev-a` tags on GitHub.
 3. Firmware v1.1: fixes from real-hardware testing first, then the auto test (ramp until stall, report max rpm at the set current), see `docs/firmware.md` Backlog.
 4. Build and test boards 2 to 5 with a per-board record.
 5. Front panel for the UI board; M3 standoffs.
@@ -46,6 +45,7 @@
 
 ## Recently resolved
 
+- 2026-11-25: inventory file in the Project knowledge (`inventory/component-inventory.md`). Hard rule 1 points at it; `docs/inventory.md` keeps the parts Dallas has stated that the file doesn't list, plus the buy list.
 - 2026-10-14: MiniCore install (it's a board package in Boards Manager, not a library).
 - 2026-10-14: `no flash data found ... empty.hex` during Burn Bootloader and `no eeprom data found` during upload are normal (`docs/build-and-flash.md`).
 - 2026-10-14: first ATmega328P's fuses burned off-board on a breadboard jig (J2 isn't fitted on the built boards).
